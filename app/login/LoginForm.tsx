@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Mail, Lock, AlertCircle, LogIn } from 'lucide-react';
@@ -66,19 +66,27 @@ export default function LoginForm() {
     }
   };
 
+  // Memoize FloatingLines to prevent re-renders on form state changes
+  const floatingLines = useMemo(
+    () => (
+      <FloatingLines
+        enabledWaves={['top', 'middle', 'bottom']}
+        lineCount={5}
+        lineDistance={5}
+        bendRadius={5}
+        bendStrength={-0.5}
+        interactive={true}
+        parallax={true}
+      />
+    ),
+    []
+  );
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* FloatingLines background */}
       <div className="absolute inset-0 -z-10 w-full h-full">
-        <FloatingLines
-          enabledWaves={['top', 'middle', 'bottom']}
-          lineCount={5}
-          lineDistance={5}
-          bendRadius={5}
-          bendStrength={-0.5}
-          interactive={true}
-          parallax={true}
-        />
+        {floatingLines}
       </div>
 
       {/* Content */}

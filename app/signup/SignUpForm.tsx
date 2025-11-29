@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Mail, Lock, User, GraduationCap, UserCog, AlertCircle } from 'lucide-react';
@@ -99,19 +99,27 @@ export default function SignUpForm() {
     }
   };
 
+  // Memoize FloatingLines to prevent re-renders on form state changes
+  const floatingLines = useMemo(
+    () => (
+      <FloatingLines
+        enabledWaves={['top', 'middle', 'bottom']}
+        lineCount={5}
+        lineDistance={5}
+        bendRadius={5}
+        bendStrength={-0.5}
+        interactive={true}
+        parallax={true}
+      />
+    ),
+    []
+  );
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* FloatingLines background */}
       <div className="absolute inset-0 -z-10 w-full h-full">
-        <FloatingLines
-          enabledWaves={['top', 'middle', 'bottom']}
-          lineCount={5}
-          lineDistance={5}
-          bendRadius={5}
-          bendStrength={-0.5}
-          interactive={true}
-          parallax={true}
-        />
+        {floatingLines}
       </div>
 
       {/* Content */}
@@ -176,85 +184,85 @@ export default function SignUpForm() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Name */}
-            <div>
-              <label htmlFor="name" className="block text-xs font-medium text-slate-300 mb-1.5">
-                Full Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
-                  placeholder="Enter your full name"
-                />
+              {/* Name */}
+              <div>
+                <label htmlFor="name" className="block text-xs font-medium text-slate-300 mb-1.5">
+                  Full Name
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                    placeholder="Enter your full name"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="block text-xs font-medium text-slate-300 mb-1.5">
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
-                  placeholder="Enter your email"
-                />
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-xs font-medium text-slate-300 mb-1.5">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                    placeholder="Enter your email"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Password */}
-            <div>
-              <label htmlFor="password" className="block text-xs font-medium text-slate-300 mb-1.5">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
-                  placeholder="Create a password"
-                />
+              {/* Password */}
+              <div>
+                <label htmlFor="password" className="block text-xs font-medium text-slate-300 mb-1.5">
+                  Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                    placeholder="Create a password"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Confirm Password */}
-            <div>
-              <label htmlFor="confirmPassword" className="block text-xs font-medium text-slate-300 mb-1.5">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
-                  placeholder="Confirm your password"
-                />
+              {/* Confirm Password */}
+              <div>
+                <label htmlFor="confirmPassword" className="block text-xs font-medium text-slate-300 mb-1.5">
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                    placeholder="Confirm your password"
+                  />
+                </div>
               </div>
-            </div>
             </div>
 
             {/* Submit Button */}

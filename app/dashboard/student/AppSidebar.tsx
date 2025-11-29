@@ -15,11 +15,12 @@ import {
 import {
   Home,
   BookOpen,
-  Users,
   FileText,
   Settings,
   LogOut,
   GraduationCap,
+  Calendar,
+  Brain,
 } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
@@ -36,14 +37,15 @@ export function AppSidebar() {
   }
 
   const menuItems = [
-    { href: "/dashboard/professor", icon: Home, label: "Dashboard" },
-    { href: "/dashboard/professor/courses", icon: BookOpen, label: "Courses" },
-    { href: "/dashboard/professor/students", icon: Users, label: "Students" },
-    { href: "/dashboard/professor/assignments", icon: FileText, label: "Assignments" },
+    { href: "/dashboard/student", icon: Home, label: "Dashboard" },
+    { href: "/dashboard/student/courses", icon: BookOpen, label: "My Courses" },
+    { href: "/dashboard/student/flashcards", icon: Brain, label: "Flashcards" },
+    { href: "/dashboard/student/assignments", icon: FileText, label: "Assignments" },
+    { href: "/dashboard/student/schedule", icon: Calendar, label: "Schedule" },
   ]
 
   const settingsItems = [
-    { href: "/dashboard/professor/settings", icon: Settings, label: "Settings" },
+    { href: "/dashboard/student/settings", icon: Settings, label: "Settings" },
   ]
 
   return (
@@ -53,7 +55,7 @@ export function AppSidebar() {
           <GraduationCap className="h-6 w-6 text-sidebar-primary shrink-0" />
           <span className="font-semibold text-lg group-data-[collapsible=icon]:hidden">KodiGrow</span>
         </div>
-        <p className="text-sm text-sidebar-foreground/70 mt-1 group-data-[collapsible=icon]:hidden">Professor Dashboard</p>
+        <p className="text-sm text-sidebar-foreground/70 mt-1 group-data-[collapsible=icon]:hidden">Student Dashboard</p>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

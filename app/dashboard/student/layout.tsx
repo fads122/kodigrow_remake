@@ -4,7 +4,7 @@ import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/s
 import { AppSidebar } from "./AppSidebar"
 import { ThemeToggle } from "@/app/components/ThemeToggle"
 
-export default function ProfessorLayout({ children }: { children: React.ReactNode }) {
+export default function StudentLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />

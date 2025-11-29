@@ -4,14 +4,18 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import Button from '../ui/Button';
+import AccountTypeModal from '../ui/AccountTypeModal';
 
 interface NavbarProps {
   onGetStarted?: () => void;
 }
 
 const Navbar = ({ onGetStarted }: NavbarProps) => {
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navLinks = [
     { name: 'Features', href: '#features' },
@@ -60,9 +64,26 @@ const Navbar = ({ onGetStarted }: NavbarProps) => {
               {link.name}
             </motion.a>
           ))}
-          <Button variant="primary" size="sm" onClick={onGetStarted}>
-            Get Started
-          </Button>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-white">
+              <button
+                onClick={() => router.push('/login')}
+                className="hover:text-blue-400 font-medium transition-colors"
+              >
+                Sign In
+              </button>
+              <span className="text-slate-500">|</span>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="hover:text-blue-400 font-medium transition-colors"
+              >
+                Sign Up
+              </button>
+            </div>
+            <Button variant="primary" size="sm" onClick={onGetStarted}>
+              Get Started
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -102,13 +123,43 @@ const Navbar = ({ onGetStarted }: NavbarProps) => {
                   {link.name}
                 </motion.a>
               ))}
-              <Button variant="primary" size="md" className="w-full" onClick={onGetStarted}>
-                Get Started
-              </Button>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-center gap-2 text-white py-2">
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      router.push('/login');
+                    }}
+                    className="hover:text-blue-400 font-medium transition-colors"
+                  >
+                    Sign In
+                  </button>
+                  <span className="text-slate-500">|</span>
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsModalOpen(true);
+                    }}
+                    className="hover:text-blue-400 font-medium transition-colors"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+                <Button variant="primary" size="md" className="w-full" onClick={onGetStarted}>
+                  Get Started
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Account Type Modal */}
+      <AccountTypeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelect={() => setIsModalOpen(false)}
+      />
     </motion.nav>
   );
 };
