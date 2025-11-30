@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-
+  title: "KodiGrow",
   description: "The most comprehensive learning management system designed to empower students, educators, and institutions with cutting-edge tools and seamless experiences.",
 };
 
