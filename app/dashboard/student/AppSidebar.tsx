@@ -21,6 +21,7 @@ import {
   GraduationCap,
   Calendar,
   Brain,
+  FolderOpen,
 } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
@@ -40,6 +41,7 @@ export function AppSidebar() {
     { href: "/dashboard/student", icon: Home, label: "Dashboard" },
     { href: "/dashboard/student/courses", icon: BookOpen, label: "My Courses" },
     { href: "/dashboard/student/flashcards", icon: Brain, label: "Flashcards" },
+    { href: "/dashboard/student/learning-materials", icon: FolderOpen, label: "Learning Materials" },
     { href: "/dashboard/student/assignments", icon: FileText, label: "Assignments" },
     { href: "/dashboard/student/schedule", icon: Calendar, label: "Schedule" },
   ]
@@ -64,7 +66,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {menuItems.map((item) => {
                 const Icon = item.icon
-                const isActive = pathname === item.href
+                const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
                 return (
                   <SidebarMenuItem key={item.href}>
                     <SidebarMenuButton asChild isActive={isActive} tooltip={item.label}>
