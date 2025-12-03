@@ -84,7 +84,7 @@ export default function SignUpForm() {
           // No email confirmation required, redirect immediately
           setSuccess(true);
           setTimeout(() => {
-            const accountType = data.user.user_metadata?.account_type;
+            const accountType = data.user?.user_metadata?.account_type;
             if (accountType === 'professor') {
               router.push('/dashboard/professor');
             } else {
@@ -93,7 +93,7 @@ export default function SignUpForm() {
           }, 2000);
         }
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
@@ -123,12 +123,12 @@ export default function SignUpForm() {
       </div>
 
       {/* Content */}
-      <div className="relative w-full max-w-2xl mx-auto px-4 py-8">
+      <div className="relative w-full max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-slate-900/80 backdrop-blur-xl rounded-3xl border border-slate-800/50 shadow-2xl p-10"
+          className="bg-slate-900/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-slate-800/50 shadow-2xl p-6 sm:p-8 md:p-10"
         >
           {/* Back button */}
           <button
@@ -140,18 +140,18 @@ export default function SignUpForm() {
           </button>
 
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/30 mb-3">
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="inline-flex p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/30 mb-3">
               {accountType === 'student' ? (
-                <GraduationCap className="w-6 h-6 text-blue-400" />
+                <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
               ) : (
-                <UserCog className="w-6 h-6 text-purple-400" />
+                <UserCog className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
               )}
             </div>
-            <h1 className="text-2xl font-bold text-white mb-2">
+            <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">
               Create Your {accountType === 'student' ? 'Student' : 'Professor'} Account
             </h1>
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-400 text-xs sm:text-sm">
               Join KodiGrow and start your learning journey
             </p>
           </div>

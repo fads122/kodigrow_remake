@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import {
   BookOpen,
   Video,
@@ -92,7 +92,7 @@ const Features = () => {
     },
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -102,14 +102,14 @@ const Features = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   };
@@ -117,7 +117,7 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="relative py-32 bg-slate-950 text-white overflow-hidden"
+      className="relative py-16 sm:py-24 md:py-32 bg-slate-950 text-white overflow-hidden"
     >
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px]" />
@@ -130,15 +130,15 @@ const Features = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white px-2">
             Everything you need to{' '}
             <span className="bg-gradient-to-r from-sky-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               launch smarter
             </span>
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
             Powerful features designed to enhance your learning experience and help you achieve your goals.
           </p>
         </motion.div>
@@ -149,7 +149,7 @@ const Features = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
         >
           {features.map((feature, index) => (
             <motion.div
@@ -158,19 +158,19 @@ const Features = () => {
               whileHover={{ y: -8 }}
               className="group relative"
             >
-              <div className="h-full p-8 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 hover:border-sky-500/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-sky-500/20">
+              <div className="h-full p-6 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 hover:border-sky-500/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-sky-500/20">
                 {/* Icon */}
-                <div className="mb-6">
-                  <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${feature.color} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <feature.icon className="w-6 h-6 text-white" />
+                <div className="mb-4 sm:mb-5 md:mb-6">
+                  <div className={`inline-flex p-3 sm:p-3.5 md:p-4 rounded-lg sm:rounded-xl bg-gradient-to-br ${feature.color} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <feature.icon className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-white" />
                   </div>
                 </div>
                 
                 {/* Content */}
-                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-sky-400 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-white group-hover:text-sky-400 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                   {feature.description}
                 </p>
               </div>

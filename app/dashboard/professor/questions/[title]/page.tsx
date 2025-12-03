@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '../../../../../lib/supabase';
 import { ArrowLeft, HelpCircle, Trash2 } from 'lucide-react';
@@ -41,7 +41,7 @@ interface Question {
   course?: Course | null;
 }
 
-export default function QuizDetailPage({ params }: { params: Promise<{ title: string }> }) {
+function QuizDetailContent({ params }: { params: Promise<{ title: string }> }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [title, setTitle] = useState('');
@@ -304,6 +304,18 @@ export default function QuizDetailPage({ params }: { params: Promise<{ title: st
         </div>
       )}
     </div>
+  );
+}
+
+export default function QuizDetailPage({ params }: { params: Promise<{ title: string }> }) {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse text-muted-foreground">Loading...</div>
+      </div>
+    }>
+      <QuizDetailContent params={params} />
+    </Suspense>
   );
 }
 

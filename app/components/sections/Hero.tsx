@@ -59,14 +59,14 @@ const Hero = ({ onGetStarted }: HeroProps) => {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="text-center"
         >
-          <motion.div variants={itemVariants} className="mb-6">
+          <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
             {/* <motion.span
               className="inline-block px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6"
               whileHover={{ scale: 1.05 }}
@@ -77,7 +77,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
 
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 sm:mb-6 leading-tight px-2"
           >
             <span className="block bg-gradient-to-r from-sky-400 via-indigo-400 to-fuchsia-400 bg-clip-text text-transparent">
               Learn. Grow. Excel.
@@ -89,7 +89,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
 
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4"
           >
             The most comprehensive learning management system designed to empower students,
             educators, and institutions with cutting-edge tools and seamless experiences.
@@ -97,22 +97,22 @@ const Hero = ({ onGetStarted }: HeroProps) => {
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col lg:flex-row gap-10 items-center justify-between mb-16"
+            className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 items-center justify-between mb-12 sm:mb-16"
           >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="group shadow-[0_0_40px_rgba(56,189,248,0.35)]" onClick={onGetStarted}>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full sm:w-auto">
+              <Button size="lg" className="group shadow-[0_0_40px_rgba(56,189,248,0.35)] w-full sm:w-auto" onClick={onGetStarted}>
                 Get Started Free
                 <ArrowRight className="ml-2 inline-block group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" size="lg" className="group border-slate-600/70 bg-slate-900/40 hover:bg-slate-900/80">
+              <Button variant="outline" size="lg" className="group border-slate-600/70 bg-slate-900/40 hover:bg-slate-900/80 w-full sm:w-auto">
                 <Play className="mr-2 inline-block" />
                 Watch Demo
               </Button>
             </div>
 
             {/* mini pill */}
-            <div className="rounded-2xl border border-slate-700 bg-slate-900/60 px-5 py-4 backdrop-blur-xl shadow-lg max-w-sm">
-              <p className="text-sm text-slate-300">
+            <div className="rounded-2xl border border-slate-700 bg-slate-900/60 px-4 sm:px-5 py-3 sm:py-4 backdrop-blur-xl shadow-lg max-w-sm w-full sm:w-auto">
+              <p className="text-xs sm:text-sm text-slate-300">
                 <span className="font-semibold text-sky-400">3x faster</span> course completion for teams using KodiGrow.
               </p>
             </div>
@@ -121,7 +121,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
           {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto px-2"
           >
             {[
               { icon: Users, value: '100K+', label: 'Active Students' },
@@ -134,15 +134,15 @@ const Hero = ({ onGetStarted }: HeroProps) => {
                 variants={floatingVariants}
                 animate="animate"
                 style={{ animationDelay: `${index * 0.2}s` }}
-                className="relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/60 px-4 py-4 text-center backdrop-blur-xl shadow-[0_18px_45px_rgba(15,23,42,0.8)]"
+                className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-slate-700/60 bg-slate-900/60 px-3 sm:px-4 py-3 sm:py-4 text-center backdrop-blur-xl shadow-[0_18px_45px_rgba(15,23,42,0.8)]"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-fuchsia-500/10" />
                 <div className="relative">
-                  <stat.icon className="w-7 h-7 mx-auto mb-2 text-sky-400" />
-                  <div className="text-2xl font-semibold text-slate-50 mb-1">
+                  <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-1 sm:mb-2 text-sky-400" />
+                  <div className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-50 mb-0.5 sm:mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-slate-400 uppercase tracking-wide">
+                  <div className="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wide">
                     {stat.label}
                   </div>
                 </div>

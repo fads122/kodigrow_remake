@@ -6,7 +6,7 @@ import Button from '../ui/Button';
 
 const CTA = () => {
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-r from-sky-500 via-indigo-600 to-fuchsia-500">
+    <section className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-r from-sky-500 via-indigo-600 to-fuchsia-500">
       {/* Animated background */}
       <div className="absolute inset-0">
         <motion.div
@@ -36,24 +36,24 @@ const CTA = () => {
           <motion.div
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, repeatDelay: 2 }}
-            className="inline-block mb-6"
+            className="inline-block mb-4 sm:mb-6"
           >
-            <Sparkles className="w-12 h-12 text-white" />
+            <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 px-2">
             Ready to Transform Your
-            <br />
-            Learning Journey?
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>Learning Journey?
           </h2>
 
-          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
             Join thousands of students and educators who are already experiencing the future of
             online learning. Start your free trial today!
           </p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -62,7 +62,7 @@ const CTA = () => {
             <Button
               variant="secondary"
               size="lg"
-              className="group bg-white text-blue-600 hover:bg-gray-100"
+              className="group bg-white text-blue-600 hover:bg-gray-100 w-full sm:w-auto"
             >
               Start Free Trial
               <ArrowRight className="ml-2 inline-block group-hover:translate-x-1 transition-transform" />
@@ -70,7 +70,7 @@ const CTA = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-white text-white hover:bg-white/10"
+              className="border-2 border-white text-white hover:bg-white/10 w-full sm:w-auto"
             >
               Contact Sales
             </Button>
@@ -81,7 +81,7 @@ const CTA = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="mt-8 text-white/80 text-sm"
+            className="mt-6 sm:mt-8 text-white/80 text-xs sm:text-sm px-4"
           >
             No credit card required • 14-day free trial • Cancel anytime
           </motion.p>

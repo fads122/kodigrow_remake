@@ -13,6 +13,7 @@ interface User {
   email?: string;
   user_metadata?: {
     account_type?: string;
+    full_name?: string;
   };
 }
 
@@ -164,14 +165,14 @@ export default function StudentDashboardPage() {
   const userName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Student';
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Header Section */}
       <div className="space-y-2">
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="text-3xl font-semibold tracking-tight"
+          className="text-2xl sm:text-3xl font-semibold tracking-tight"
         >
           Dashboard
         </motion.h1>
@@ -179,7 +180,7 @@ export default function StudentDashboardPage() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
-          className="text-muted-foreground"
+          className="text-sm sm:text-base text-muted-foreground"
         >
           Welcome back, {userName}
         </motion.p>
@@ -188,7 +189,7 @@ export default function StudentDashboardPage() {
       <Separator />
 
       {/* Stats Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -197,16 +198,16 @@ export default function StudentDashboardPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group relative overflow-hidden rounded-lg border border-border bg-card p-6 transition-all hover:shadow-md hover:border-border/80"
+              className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 sm:p-5 md:p-6 transition-all hover:shadow-md hover:border-border/80"
             >
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                  <p className="text-2xl font-semibold">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground">{stat.subtitle}</p>
+              <div className="flex items-start justify-between gap-2">
+                <div className="space-y-1 min-w-0 flex-1">
+                  <p className="text-xs sm:text-sm font-medium text-muted-foreground truncate">{stat.title}</p>
+                  <p className="text-xl sm:text-2xl font-semibold">{stat.value}</p>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-1">{stat.subtitle}</p>
                 </div>
-                <div className="rounded-lg bg-muted p-2.5">
-                  <Icon className="h-5 w-5 text-muted-foreground" />
+                <div className="rounded-lg bg-muted p-2 sm:p-2.5 flex-shrink-0">
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
                 </div>
               </div>
             </motion.div>
@@ -219,15 +220,15 @@ export default function StudentDashboardPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
-        className="rounded-lg border border-border bg-card p-6"
+        className="rounded-lg border border-border bg-card p-4 sm:p-5 md:p-6"
       >
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
           <div>
-            <h2 className="text-lg font-semibold">Quick Actions</h2>
-            <p className="text-sm text-muted-foreground mt-1">Access frequently used features</p>
+            <h2 className="text-base sm:text-lg font-semibold">Quick Actions</h2>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1">Access frequently used features</p>
           </div>
         </div>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-2 sm:gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {quickActions.map((action, index) => {
             const Icon = action.icon;
             return (
@@ -265,12 +266,12 @@ export default function StudentDashboardPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.3 }}
-        className="rounded-lg border border-border bg-card p-6"
+        className="rounded-lg border border-border bg-card p-4 sm:p-5 md:p-6"
       >
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
           <div>
-            <h2 className="text-lg font-semibold">My Courses</h2>
-            <p className="text-sm text-muted-foreground mt-1">
+            <h2 className="text-base sm:text-lg font-semibold">My Courses</h2>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
               {courses.length > 0 ? `${courses.length} enrolled course${courses.length === 1 ? '' : 's'}` : 'No courses enrolled'}
             </p>
           </div>
@@ -286,7 +287,7 @@ export default function StudentDashboardPage() {
         </div>
         
         {courses.length > 0 ? (
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {courses.map((course, index) => (
               <motion.a
                 key={course.id}

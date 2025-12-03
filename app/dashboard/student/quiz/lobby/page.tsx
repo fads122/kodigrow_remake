@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '../../../../../lib/supabase';
 import { ArrowLeft, Users, Loader2 } from 'lucide-react';
@@ -40,7 +40,7 @@ interface Session {
   };
 }
 
-export default function QuizLobbyPage() {
+function QuizLobbyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session') || '';
@@ -137,7 +137,16 @@ export default function QuizLobbyPage() {
         return;
       }
 
-      setSession(data as Session);
+      // Transform the course array to a single object if it's an array
+      if (data) {
+        const transformedData = {
+          ...data,
+          course: Array.isArray(data.course) && data.course.length > 0 
+            ? data.course[0] 
+            : data.course
+        };
+        setSession(transformedData as Session);
+      }
     } catch (error) {
       console.error('Error fetching session:', error);
     }
@@ -330,6 +339,21 @@ export default function QuizLobbyPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function QuizLobbyPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-2" />
+          <p className="text-sm text-muted-foreground">Loading lobby...</p>
+        </div>
+      </div>
+    }>
+      <QuizLobbyContent />
+    </Suspense>
   );
 }
 
